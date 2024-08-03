@@ -125,5 +125,24 @@ $(function () {
       // エラーなし
       $("#tel").css("background-color", "#fafafa");
     }
+
+    if ($("#agree").prop("checked") == false) {
+      error = true;
+      message +=
+        "個人情報の取り扱いについてご同意いただける場合は、チェックボックスにチェックしてください。\n";
+    }
+
+    if (error == true) {
+      $("#submit").attr("src", "images/button-submit.png");
+    } else {
+      $("#submit").attr("src", "images/button-submit-blue.png");
+    }
+
+    result = {
+      error: error,
+      message: messsage,
+    };
+
+    return result;
   }
 });
