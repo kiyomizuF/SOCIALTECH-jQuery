@@ -63,6 +63,67 @@ $(function () {
 
   // お問い合わせフォームの入力チェック
   function inputCheck() {
-    console.log("inputCheck関数の呼び出し");
+    // エラーのチェック結果
+    let result;
+
+    // エラーメッセージのテキスト
+    let message = "";
+
+    // エラーがなければfalse、エラーがあればtrue
+    let error = false;
+
+    if ($("#name").val() == "") {
+      $("#name").css("background-color", "#f79999");
+      error = true;
+      message += "お名前を入力してください\n";
+    } else {
+      $("#name").css("background-color", "#fafafa");
+    }
+
+    // フリガナのチェック
+    if ($("#furigana").val() == "") {
+      // エラーあり
+      $("#furigana").css("background-color", "#f79999");
+      error = true;
+      message += "フリガナを入力してください。\n";
+    } else {
+      // エラーなし
+      $("#furigana").css("background-color", "#fafafa");
+    }
+
+    // お問い合わせのチェック
+    if ($("#message").val() == "") {
+      // エラーあり
+      $("#message").css("background-color", "#f79999");
+      error = true;
+      message += "お問い合わせ内容を入力してください。\n";
+    } else {
+      // エラーなし
+      $("#message").css("background-color", "#fafafa");
+    }
+
+    if (
+      $("#email").val() == "" ||
+      $("#email").val().indexOf("@") == -1 ||
+      $("#email").val().indexOf(".") == -1
+    ) {
+      $("#email").css("background-color", "#f79999");
+      error = true;
+      message +=
+        "メールアドレスが未記入、または「@」「.」が含まれていません。\n";
+    } else {
+      $("#email").css("background-color", "#fafafa");
+    }
+
+    // 電話番号のチェック（未入力はOK、未入力でない場合は-が必要）
+    if ($("#tel").val() !== "" && $("#tel").val().indexOf("-") == -1) {
+      // エラーあり
+      $("#tel").css("background-color", "#f79999");
+      error = true;
+      message += "電話番号にハイフンを記入してください";
+    } else {
+      // エラーなし
+      $("#tel").css("background-color", "#fafafa");
+    }
   }
 });
