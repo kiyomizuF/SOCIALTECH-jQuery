@@ -40,7 +40,7 @@ $(function () {
     let error = result.error;
     let message = result.message;
 
-    エラーが無かったらフォームを送信する;
+    // エラーが無かったらフォームを送信する;
     if (error == false) {
       // フォーム送信は実際には行わず、送信成功メッセージのみ表示する
       alert("お問い合わせを送信しました。");
@@ -67,6 +67,10 @@ $(function () {
   });
 
   $("#message").on("blur", function () {
+    inputCheck();
+  });
+
+  $("#prefecture").on("blur", function () {
     inputCheck();
   });
 
@@ -137,6 +141,14 @@ $(function () {
     } else {
       // エラーなし
       $("#tel").css("background-color", "#fafafa");
+    }
+
+    if ($("#prefecture").val() == "") {
+      $("#prefecture").css("background-color", "#f79999");
+      error = true;
+      message += "都道府県を選択してください。\n";
+    } else {
+      $("#prefecture").css("background-color", "#fafafa");
     }
 
     if ($("#agree").prop("checked") == false) {
